@@ -30,8 +30,8 @@ self.addEventListener('push', function(event) {
     body: 'Yay it works.',
     icon: 'images/icon.png',
     badge: 'images/badge.png',
-    vibrate: [2400, 50, 3400], // Vibrate 300ms, pause 100ms, then vibrate 400ms
-    sound: 'sound/WendySulcaLaTetita.mp3'
+    vibrate: [15000, 100, 15000], // Vibrate 300ms, pause 100ms, then vibrate 400ms
+    sound: 'sound/IncyWincyArana.mp3'
 
   };
   
