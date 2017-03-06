@@ -31,9 +31,9 @@ self.addEventListener('push', function(event) {
     icon: 'images/icon.png',
     badge: 'images/badge.png',
     requireInteraction: true,
-    renotify: true,
-    vibrate: [30000, 100, 30000, 100, 30000, 100, 30000], // Vibrate 300ms, pause 100ms, then vibrate 400ms
-    sound: 'sound/IncyWincyArana.mp3'
+    /*renotify: true,*/
+    vibrate: [30000, 100, 30000, 100, 30000, 100, 30000] // Vibrate 300ms, pause 100ms, then vibrate 400ms
+    /*sound: 'sound/IncyWincyArana.mp3'*/
   };
   
   const notificationPromise = self.registration.showNotification(title, options);
