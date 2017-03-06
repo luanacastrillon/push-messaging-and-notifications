@@ -29,7 +29,9 @@ self.addEventListener('push', function(event) {
   const options = {
     body: 'Yay it works.',
     icon: 'images/icon.png',
-    badge: 'images/badge.png'
+    badge: 'images/badge.png',
+    vibrate: [300, 100, 400] // Vibrate 300ms, pause 100ms, then vibrate 400ms
+
   };
   
   const notificationPromise = self.registration.showNotification(title, options);
