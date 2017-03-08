@@ -39,7 +39,7 @@ self.addEventListener('push', function(event) {
   const notificationPromise = self.registration.showNotification(title, options);
   event.waitUntil(notificationPromise);
   
-  fetch('https://www.gruveo.com/api/ring?' + (start ? 'start' : 'stop'), { method: 'HEAD' }).catch(function () {});
+ // fetch('https://www.gruveo.com/api/ring?' + (start ? 'start' : 'stop'), { method: 'HEAD' }).catch(function () {});
 
 });
 
@@ -52,4 +52,7 @@ self.addEventListener('notificationclick', function(event) {
   event.waitUntil(
     clients.openWindow('http://www.condortech.com.ar')
   );
+  
+  console.log('HICIERON CLICK!!! ---> DEBO DEJAR DE ENVIAR LAS NOTIFICACIONES');
+  
 });
