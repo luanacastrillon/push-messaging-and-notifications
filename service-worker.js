@@ -55,4 +55,9 @@ self.addEventListener('notificationclick', function(event) {
   
   console.log('HICIERON CLICK!!! ---> DEBO DEJAR DE ENVIAR LAS NOTIFICACIONES');
   
+  registration.pushManager.getSubscription().then(function(subscription) {
+    console.log("GOT SUBSCRIPTION ID: ", subscription.endpoint)
+  });
+
+  
 });
