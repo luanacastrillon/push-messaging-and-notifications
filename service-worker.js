@@ -32,7 +32,8 @@ self.addEventListener('push', function(event) {
     badge: 'images/badge.png',
     /*requireInteraction: true,*/
     /*renotify: true,*/
-    vibrate: [30000, 100, 30000, 100, 30000, 100, 30000] // Vibrate 300ms, pause 100ms, then vibrate 400ms
+    vibrate: [30000, 100, 30000, 100, 30000, 100, 30000], // Vibrate 300ms, pause 100ms, then vibrate 400ms
+    tag: 'simple-push-demo-notification-tag'
     /*sound: 'sound/IncyWincyArana.mp3'*/
   };
   
