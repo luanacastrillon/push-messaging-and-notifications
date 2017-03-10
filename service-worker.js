@@ -40,13 +40,15 @@ self.addEventListener('push', function(event) {
   const notificationPromise = self.registration.showNotification(title, options);
   event.waitUntil(notificationPromise);
   
-  setTimeout(replaceNotificationMissedCall(event),10000);
+  // setTimeout(replaceNotificationMissedCall(event),10000);
+
+  setTimeout(replaceNotificationMissedCall,10000);
   
  // fetch('https://www.gruveo.com/api/ring?' + (start ? 'start' : 'stop'), { method: 'HEAD' }).catch(function () {});
 
 });
 
-function replaceNotificationMissedCall(event) {
+function replaceNotificationMissedCall() {
 
     console.log('replaceNotificationMissedCall');
 
@@ -62,9 +64,10 @@ function replaceNotificationMissedCall(event) {
         /*sound: 'sound/IncyWincyArana.mp3'*/
     };
   
-    const notificationPromise = self.registration.showNotification(title, options);
-    event.waitUntil(notificationPromise);
+    //const notificationPromise = self.registration.showNotification(title, options);
+    //event.waitUntil(notificationPromise);
     
+    self.registration.showNotification(title, options);    
 }
 
 
