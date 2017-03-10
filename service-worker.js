@@ -42,7 +42,7 @@ self.addEventListener('push', function(event) {
   
   // setTimeout(replaceNotificationMissedCall(event),10000);
 
-  setTimeout(replaceNotificationMissedCall,10000);
+  setTimeout(replaceNotificationMissedCall,60000);
   
  // fetch('https://www.gruveo.com/api/ring?' + (start ? 'start' : 'stop'), { method: 'HEAD' }).catch(function () {});
 
