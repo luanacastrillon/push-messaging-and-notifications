@@ -29,7 +29,7 @@ self.addEventListener('push', function(event) {
   const options = {
     body: '2364643610',
     icon: 'images/condor_calling.png',
-    badge: 'images/condor_logo.png',
+    badge: 'images/condor_logo_2.png',
     /*requireInteraction: true,*/
     /*renotify: true,*/
     vibrate: [30000, 100, 30000, 100, 30000, 100, 30000], // Vibrate 300ms, pause 100ms, then vibrate 400ms
@@ -56,7 +56,7 @@ function replaceNotificationMissedCall() {
     const options = {
         body: '2364643610',
         icon: 'images/condor_calling.png',
-        badge: 'images/condor_logo.png',
+        badge: 'images/condor_logo_2.png',
         /*requireInteraction: true,*/
         /*renotify: true,*/
         /*vibrate: [30000, 100, 30000, 100, 30000, 100, 30000], // Vibrate 300ms, pause 100ms, then vibrate 400ms*/
