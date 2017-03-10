@@ -25,9 +25,9 @@ self.addEventListener('push', function(event) {
   console.log('[Service Worker] Push Received.');
   console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
 
-  const title = 'Llegó notificación de Condor';
+  const title = 'Llamando...';
   const options = {
-    body: 'Yay it works.',
+    body: '2364643610',
     icon: 'images/icon.png',
     badge: 'images/badge.png',
     /*requireInteraction: true,*/
@@ -40,19 +40,19 @@ self.addEventListener('push', function(event) {
   const notificationPromise = self.registration.showNotification(title, options);
   event.waitUntil(notificationPromise);
   
-  setTimeout(replaceNotificationMissedCall,10000);
+  setTimeout(replaceNotificationMissedCall(event),10000);
   
  // fetch('https://www.gruveo.com/api/ring?' + (start ? 'start' : 'stop'), { method: 'HEAD' }).catch(function () {});
 
 });
 
-function replaceNotificationMissedCall() {
+function replaceNotificationMissedCall(event) {
 
     console.log('replaceNotificationMissedCall');
 
     const title = 'Llamada perdida';
     const options = {
-        body: '2364643610.',
+        body: '2364643610',
         icon: 'images/icon.png',
         badge: 'images/badge.png',
         /*requireInteraction: true,*/
