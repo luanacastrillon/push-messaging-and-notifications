@@ -40,9 +40,32 @@ self.addEventListener('push', function(event) {
   const notificationPromise = self.registration.showNotification(title, options);
   event.waitUntil(notificationPromise);
   
+  setTimeout(replaceNotificationMissedCall,10000);
+  
  // fetch('https://www.gruveo.com/api/ring?' + (start ? 'start' : 'stop'), { method: 'HEAD' }).catch(function () {});
 
 });
+
+function replaceNotificationMissedCall() {
+
+    console.log('replaceNotificationMissedCall');
+
+    const title = 'Llamada perdida';
+    const options = {
+        body: '2364643610.',
+        icon: 'images/icon.png',
+        badge: 'images/badge.png',
+        /*requireInteraction: true,*/
+        /*renotify: true,*/
+        vibrate: [30000, 100, 30000, 100, 30000, 100, 30000], // Vibrate 300ms, pause 100ms, then vibrate 400ms
+        tag: 'simple-push-demo-notification-tag'
+        /*sound: 'sound/IncyWincyArana.mp3'*/
+    };
+  
+    const notificationPromise = self.registration.showNotification(title, options);
+    event.waitUntil(notificationPromise);
+    
+}
 
 
 self.addEventListener('notificationclick', function(event) {
