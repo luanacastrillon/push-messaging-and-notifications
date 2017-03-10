@@ -26,6 +26,14 @@ self.addEventListener('push', function(event) {
   console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
 
   const title = 'Llamando...';
+  
+  var data = {
+        call_data: {
+            from: '2364643610',
+            is_missed_call: false
+        }
+  };
+  
   const options = {
     body: '2364643610',
     icon: 'images/condor_calling.png',
@@ -33,8 +41,10 @@ self.addEventListener('push', function(event) {
     /*requireInteraction: true,*/
     /*renotify: true,*/
     vibrate: [30000, 100, 30000, 100, 30000, 100, 30000], // Vibrate 300ms, pause 100ms, then vibrate 400ms
-    tag: 'call'
+    tag: 'call',
     /*sound: 'sound/IncyWincyArana.mp3'*/
+    data:data
+
   };
   
   const notificationPromise = self.registration.showNotification(title, options);
@@ -53,6 +63,14 @@ function replaceNotificationMissedCall(event) {
     console.log('replaceNotificationMissedCall');
 
     const title = 'Llamada perdida';
+    
+    var data = {
+        call_data: {
+            from: '2364643610',
+            is_missed_call: true
+        }
+  };
+    
     const options = {
         body: '2364643610',
         icon: 'images/condor_calling.png',
@@ -60,14 +78,15 @@ function replaceNotificationMissedCall(event) {
         /*requireInteraction: true,*/
         /*renotify: true,*/
         /*vibrate: [30000, 100, 30000, 100, 30000, 100, 30000], // Vibrate 300ms, pause 100ms, then vibrate 400ms*/
-        tag: 'call'
+        tag: 'call',
+        data: data
         /*sound: 'sound/IncyWincyArana.mp3'*/
     };
   
-    const notificationPromise = self.registration.showNotification(title, options);
-    event.waitUntil(notificationPromise);
+    //const notificationPromise = self.registration.showNotification(title, options);
+    //event.waitUntil(notificationPromise);
     
-    //self.registration.showNotification(title, options);    
+    self.registration.showNotification(title, options);    
 }
 
 
@@ -75,6 +94,10 @@ self.addEventListener('notificationclick', function(event) {
   console.log('[Service Worker] Notification click Received.');
 
   event.notification.close();
+  
+  var call_data = event.notification.data.call_data;
+  
+  console.log('DATA FROM NOTIF: from= ' + call_data);
 
   event.waitUntil(
     clients.openWindow('http://www.condortech.com.ar')
