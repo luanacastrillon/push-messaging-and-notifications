@@ -34,6 +34,9 @@ self.addEventListener('push', function(event) {
         }
   };
   
+  var ramdom_call_id = Math.random();
+  var tag = 'call' + ramdom_call_id;
+  
   const options = {
     body: '2364643610',
     icon: 'images/condor_calling.png',
@@ -41,7 +44,7 @@ self.addEventListener('push', function(event) {
     /*requireInteraction: true,*/
     /*renotify: true,*/
     vibrate: [30000, 100, 30000, 100, 30000, 100, 30000], // Vibrate 300ms, pause 100ms, then vibrate 400ms
-    tag: 'call',
+    tag: tag,
     /*sound: 'sound/IncyWincyArana.mp3'*/
     data:data
 
@@ -50,7 +53,7 @@ self.addEventListener('push', function(event) {
   const notificationPromise = self.registration.showNotification(title, options);
   event.waitUntil(notificationPromise);
   
-  setTimeout(replaceNotificationMissedCall,10000);
+  setTimeout(replaceNotificationMissedCall,10000,tag);
 
   //setTimeout(replaceNotificationMissedCall,60000);
   
@@ -58,9 +61,11 @@ self.addEventListener('push', function(event) {
 
 });
 
-function replaceNotificationMissedCall() {
+function replaceNotificationMissedCall(tag) {
 
     console.log('replaceNotificationMissedCall');
+    
+    console.log('TAG =' + tag);
 
     const title = 'Llamada perdida';
     
@@ -78,7 +83,7 @@ function replaceNotificationMissedCall() {
         /*requireInteraction: true,*/
         /*renotify: true,*/
         /*vibrate: [30000, 100, 30000, 100, 30000, 100, 30000], // Vibrate 300ms, pause 100ms, then vibrate 400ms*/
-        tag: 'call',
+        tag: tag,
         data: data
         /*sound: 'sound/IncyWincyArana.mp3'*/
     };
