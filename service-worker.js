@@ -28,8 +28,8 @@ self.addEventListener('push', function(event) {
   const title = 'Llamando...';
   const options = {
     body: '2364643610',
-    icon: 'images/icon.png',
-    badge: 'images/badge.png',
+    icon: 'images/condor_calling.png',
+    badge: 'images/condor_logo.png',
     /*requireInteraction: true,*/
     /*renotify: true,*/
     vibrate: [30000, 100, 30000, 100, 30000, 100, 30000], // Vibrate 300ms, pause 100ms, then vibrate 400ms
@@ -55,11 +55,11 @@ function replaceNotificationMissedCall() {
     const title = 'Llamada perdida';
     const options = {
         body: '2364643610',
-        icon: 'images/icon.png',
-        badge: 'images/badge.png',
+        icon: 'images/condor_calling.png',
+        badge: 'images/condor_logo.png',
         /*requireInteraction: true,*/
         /*renotify: true,*/
-        vibrate: [30000, 100, 30000, 100, 30000, 100, 30000], // Vibrate 300ms, pause 100ms, then vibrate 400ms
+        /*vibrate: [30000, 100, 30000, 100, 30000, 100, 30000], // Vibrate 300ms, pause 100ms, then vibrate 400ms*/
         tag: 'call'
         /*sound: 'sound/IncyWincyArana.mp3'*/
     };
