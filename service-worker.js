@@ -97,7 +97,8 @@ self.addEventListener('notificationclick', function(event) {
   
   var call_data = event.notification.data.call_data;
   
-  console.log('DATA FROM NOTIF: from= ' + call_data);
+  console.log('DATA FROM NOTIF: is_missed_call= ' + call_data.is_missed_call);
+  console.log('DATA FROM NOTIF: from= ' + call_data.from);
 
   event.waitUntil(
     clients.openWindow('http://www.condortech.com.ar')
