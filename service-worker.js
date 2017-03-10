@@ -43,7 +43,7 @@ self.addEventListener('push', function(event) {
     badge: 'images/condor_logo_2.png',
     /*requireInteraction: true,*/
     /*renotify: true,*/
-    vibrate: [30000, 100, 30000, 100, 30000, 100, 30000], // Vibrate 300ms, pause 100ms, then vibrate 400ms
+    vibrate: [10000, 100, 20000, 100, 30000, 100, 40000], // Vibra 100300 ms en total...Vibra, pausa, vibra, pausa, vibra, pausa, vibra
     tag: tag,
     /*sound: 'sound/IncyWincyArana.mp3'*/
     data:data
@@ -53,7 +53,7 @@ self.addEventListener('push', function(event) {
   const notificationPromise = self.registration.showNotification(title, options);
   event.waitUntil(notificationPromise);
   
-  setTimeout(replaceNotificationMissedCall,10000,tag);
+  setTimeout(replaceNotificationMissedCall,100300,tag);
 
   //setTimeout(replaceNotificationMissedCall,60000);
   
