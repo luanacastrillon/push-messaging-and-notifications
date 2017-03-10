@@ -33,7 +33,7 @@ self.addEventListener('push', function(event) {
     /*requireInteraction: true,*/
     /*renotify: true,*/
     vibrate: [30000, 100, 30000, 100, 30000, 100, 30000], // Vibrate 300ms, pause 100ms, then vibrate 400ms
-    tag: 'simple-push-demo-notification-tag'
+    tag: 'call'
     /*sound: 'sound/IncyWincyArana.mp3'*/
   };
   
@@ -60,7 +60,7 @@ function replaceNotificationMissedCall() {
         /*requireInteraction: true,*/
         /*renotify: true,*/
         vibrate: [30000, 100, 30000, 100, 30000, 100, 30000], // Vibrate 300ms, pause 100ms, then vibrate 400ms
-        tag: 'simple-push-demo-notification-tag'
+        tag: 'call'
         /*sound: 'sound/IncyWincyArana.mp3'*/
     };
   
