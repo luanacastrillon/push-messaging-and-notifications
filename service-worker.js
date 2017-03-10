@@ -60,7 +60,7 @@ function replaceNotificationMissedCall() {
         /*requireInteraction: true,*/
         /*renotify: true,*/
         vibrate: [30000, 100, 30000, 100, 30000, 100, 30000], // Vibrate 300ms, pause 100ms, then vibrate 400ms
-        tag: 'call'
+        tag: 'misseed-call'
         /*sound: 'sound/IncyWincyArana.mp3'*/
     };
   
