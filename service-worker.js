@@ -30,26 +30,26 @@ self.addEventListener('push', function(event) {
   console.log('EVENT DATA --> title=' + eventData.title);
   console.log('EVENT DATA --> message=' + eventData.message);
   
-  var notificationTitle;
-  var data;
-  var tag;
-  var options;
+  //var notificationTitle;
+  //var data;
+  //var tag;
+  //var options;
   
   switch (eventData.title[0]) {
     case "NEW_CALL":
         
-        notificationTitle = 'Llamando...';
+        var notificationTitle = 'Llamando...';
         
-        data = {
+        var data = {
             call_data: {
                 from: '2364643610',
                 is_missed_call: false
             }
         };
         
-        tag = eventData.message[0];
+        var tag = eventData.message[0];
         
-        options = {
+        var options = {
             body: '2364643610',
             icon: 'images/condor_calling.png',
             badge: 'images/condor_logo_2.png',
@@ -63,18 +63,18 @@ self.addEventListener('push', function(event) {
         
     case "CALL_END":
         
-        notificationTitle = 'Llamada perdida';
+        var notificationTitle = 'Llamada perdida';
         
-        data = {
+        var data = {
             call_data: {
                 from: '2364643610',
                 is_missed_call: true
             }
         };
         
-        tag = eventData.message[0];
+        var tag = eventData.message[0];
     
-        options = {
+        var options = {
             body: '2364643610',
             icon: 'images/condor_calling.png',
             badge: 'images/condor_logo_2.png',
