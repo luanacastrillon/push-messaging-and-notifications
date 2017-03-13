@@ -24,6 +24,11 @@
 self.addEventListener('push', function(event) {
   console.log('[Service Worker] Push Received.');
   console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
+  
+  var eventData = JSON.parse(event.data.text());
+  
+  console.log('EVENT DATA --> title=' + eventData.tile);
+  console.log('EVENT DATA --> message=' + eventData.message);
 
   const title = 'Llamando...';
   
