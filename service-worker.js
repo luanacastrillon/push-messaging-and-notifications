@@ -53,7 +53,7 @@ self.addEventListener('push', function(event) {
   const notificationPromise = self.registration.showNotification(title, options);
   event.waitUntil(notificationPromise);
   
-  setTimeout(replaceNotificationMissedCall,100300,tag);
+  setTimeout(replaceNotificationMissedCall,100000,tag);
 
   //setTimeout(replaceNotificationMissedCall,60000);
   
