@@ -27,9 +27,68 @@ self.addEventListener('push', function(event) {
   
   var eventData = JSON.parse(event.data.text());
   
-  console.log('EVENT DATA --> title=' + eventData.tile);
+  console.log('EVENT DATA --> title=' + eventData.title);
   console.log('EVENT DATA --> message=' + eventData.message);
+  
+  var notificationTitle;
+  var data;
+  var tag;
+  var options;
+  
+  switch (eventData.title) {
+    case "NEW_CALL":
+        
+        notificationTitle = 'Llamando...';
+        
+        data = {
+            call_data: {
+                from: '2364643610',
+                is_missed_call: false
+            }
+        };
+        
+        tag = eventData.message;
+        
+        options = {
+            body: '2364643610',
+            icon: 'images/condor_calling.png',
+            badge: 'images/condor_logo_2.png',
+            vibrate: [10000, 100, 20000, 100, 30000, 100, 40000], // Vibra 100300 ms en total...Vibra, pausa, vibra, pausa, vibra, pausa, vibra
+            tag: tag,
+            data:data
 
+        };
+        
+        break;
+        
+    case "CALL_END":
+        
+        notificationTitle = 'Llamada perdida';
+        
+        data = {
+            call_data: {
+                from: '2364643610',
+                is_missed_call: true
+            }
+        };
+    
+        options = {
+            body: '2364643610',
+            icon: 'images/condor_calling.png',
+            badge: 'images/condor_logo_2.png',
+            tag: tag,
+            data: data
+        };
+    
+        break;
+    default:
+        console.log("VINO OTRA OPCION!!");
+    }
+    
+    const notificationPromise = self.registration.showNotification(notificationTitle, options);
+    event.waitUntil(notificationPromise);
+
+/*
   const title = 'Llamando...';
   
   var data = {
@@ -46,19 +105,17 @@ self.addEventListener('push', function(event) {
     body: '2364643610',
     icon: 'images/condor_calling.png',
     badge: 'images/condor_logo_2.png',
-    /*requireInteraction: true,*/
-    /*renotify: true,*/
     vibrate: [10000, 100, 20000, 100, 30000, 100, 40000], // Vibra 100300 ms en total...Vibra, pausa, vibra, pausa, vibra, pausa, vibra
     tag: tag,
-    /*sound: 'sound/IncyWincyArana.mp3'*/
     data:data
 
   };
   
   const notificationPromise = self.registration.showNotification(title, options);
-  event.waitUntil(notificationPromise);
+    event.waitUntil(notificationPromise);
   
   setTimeout(replaceNotificationMissedCall,80000,tag);
+*/
 
   //setTimeout(replaceNotificationMissedCall,60000);
   
@@ -66,7 +123,7 @@ self.addEventListener('push', function(event) {
 
 });
 
-function replaceNotificationMissedCall(tag) {
+/*function replaceNotificationMissedCall(tag) {
 
     console.log('replaceNotificationMissedCall');
     
@@ -85,19 +142,15 @@ function replaceNotificationMissedCall(tag) {
         body: '2364643610',
         icon: 'images/condor_calling.png',
         badge: 'images/condor_logo_2.png',
-        /*requireInteraction: true,*/
-        /*renotify: true,*/
-        /*vibrate: [30000, 100, 30000, 100, 30000, 100, 30000], // Vibrate 300ms, pause 100ms, then vibrate 400ms*/
         tag: tag,
         data: data
-        /*sound: 'sound/IncyWincyArana.mp3'*/
     };
   
     //const notificationPromise = self.registration.showNotification(title, options);
     //event.waitUntil(notificationPromise);
     
     self.registration.showNotification(title, options);    
-}
+}*/
 
 
 self.addEventListener('notificationclick', function(event) {
