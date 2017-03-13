@@ -35,7 +35,7 @@ self.addEventListener('push', function(event) {
   var tag;
   var options;
   
-  switch (eventData.title) {
+  switch (eventData.title[0]) {
     case "NEW_CALL":
         
         notificationTitle = 'Llamando...';
@@ -47,7 +47,7 @@ self.addEventListener('push', function(event) {
             }
         };
         
-        tag = eventData.message;
+        tag = eventData.message[0];
         
         options = {
             body: '2364643610',
@@ -71,6 +71,8 @@ self.addEventListener('push', function(event) {
                 is_missed_call: true
             }
         };
+        
+        tag = eventData.message[0];
     
         options = {
             body: '2364643610',
