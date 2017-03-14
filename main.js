@@ -228,10 +228,10 @@ function initialiseState() {
         isPushEnabled = true;
         
         //PROBANDO LUA!!!!
-        if (navigator.serviceWorker.controller) {
+        if (serviceWorkerRegistration.controller) {
             // Yes, send our controller a message.
             console.log("Sending 'hiooooooo' to controller");
-            navigator.serviceWorker.controller.postMessage("hiooooooo");
+            serviceWorkerRegistration.controller.postMessage("hiooooooo");
         }
         
       })
