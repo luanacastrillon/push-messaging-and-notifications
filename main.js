@@ -208,6 +208,9 @@ function initialiseState() {
     // Do we already have a push message subscription?
     serviceWorkerRegistration.pushManager.getSubscription()
       .then(function(subscription) {
+          
+        console.log(`Service worker registered with scope ${serviceWorkerRegistration.scope}`);
+          
         // Enable any UI which subscribes / unsubscribes from
         // push messages.
         var pushButton = document.querySelector('.js-push-button');
@@ -241,6 +244,7 @@ function initialiseState() {
   });
   
   console.log('Finishing initialiseState() method...');
+  
 }
 
 window.addEventListener('load', function() {
@@ -262,17 +266,17 @@ window.addEventListener('load', function() {
     // Listen to messages from service workers.
     navigator.serviceWorker.addEventListener('message', function(event) {
         console.log("Got reply from service worker: " + event.data);
-        //var thissound=document.getElementById('anuncioMP3');
-        //thissound.play();
+        var thissound=document.getElementById('anuncioMP3');
+        thissound.play();
     });
 
     //PROBANDO LUA!!!!
     // Are we being controlled?
-    if (navigator.serviceWorker.controller) {
+    /*if (navigator.serviceWorker.controller) {
         // Yes, send our controller a message.
         console.log("Sending 'hiooooooo' to controller");
         navigator.serviceWorker.controller.postMessage("hiooooooo");
-    } else {
+    } else {*/
 
         // Check that service workers are supported, if so, progressively
         // enhance and add push messaging support, otherwise continue without it.
@@ -284,6 +288,6 @@ window.addEventListener('load', function() {
             window.Demo.debug.log('Service workers aren\'t supported in this browser.');
         }
         
-    }
+    //}
   
 });

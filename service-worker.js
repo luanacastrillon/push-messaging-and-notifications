@@ -185,8 +185,23 @@ self.addEventListener('notificationclick', function(event) {
   
 });
 
+//PROBANDO 14/03/17
 self.addEventListener("message", function(event) {
     self.clients.matchAll().then(all => all.forEach(client => {
         client.postMessage("Responding to " + event.data);
     }));
 });
+
+self.addEventListener('install', function (evt) {
+    console.log("[Service Worker] the worker was installed properly!");
+});
+
+self.addEventListener('activate', function (evet) {
+    console.log("[Service Worker] it has actived properly");
+});
+
+self.addEventListener('fetch', function (evt) {
+    console.log("[Service Worker] fetching some data");
+    console.log(evt);
+});
+//~PROBANDO 14/03/17
