@@ -247,6 +247,9 @@ window.addEventListener('load', function() {
     }
   });
   
+  //PROBANDO LUA...
+  navigator.serviceWorker.controller.postMessage("LUA");
+  
     // Listen to messages from service workers.
     navigator.serviceWorker.addEventListener('message', function(event) {
         console.log("Got reply from service worker: " + event.data);
