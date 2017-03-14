@@ -228,10 +228,10 @@ function initialiseState() {
         isPushEnabled = true;
         
         //PROBANDO LUA!!!!
-        if (serviceWorkerRegistration.controller) {
+        if (navigator.serviceWorker.controller) {
             // Yes, send our controller a message.
             console.log("Sending 'hiooooooo' to controller");
-            serviceWorkerRegistration.controller.postMessage("hiooooooo");
+            navigator.serviceWorker.controller.postMessage("hiooooooo");
         }
         
       })
@@ -245,7 +245,8 @@ function initialiseState() {
 
 window.addEventListener('load', function() {
     
-    console.log('Addinf listener to push button...');
+  console.log('Addinf listener to push button...');
+  
   var pushButton = document.querySelector('.js-push-button');
   pushButton.addEventListener('click', function() {
     if (isPushEnabled) {
@@ -261,8 +262,8 @@ window.addEventListener('load', function() {
     // Listen to messages from service workers.
     navigator.serviceWorker.addEventListener('message', function(event) {
         console.log("Got reply from service worker: " + event.data);
-        var thissound=document.getElementById('anuncioMP3');
-        thissound.play();
+        //var thissound=document.getElementById('anuncioMP3');
+        //thissound.play();
     });
 
     //PROBANDO LUA!!!!
