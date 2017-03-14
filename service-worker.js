@@ -59,6 +59,9 @@ self.addEventListener('push', function(event) {
 
         };
         
+        var audio = new Audio('anuncioMP3.mp3');
+        audio.play()
+        
         break;
         
     case "CALL_END":
