@@ -247,6 +247,15 @@ function initialiseState() {
   
 }
 
+function reproduceSound() {
+
+    console.log("REPRODUCING SOUND!!!!!");
+    
+    var audio = new Audio('anuncioMP3.mp3');
+    audio.play();
+    
+}
+
 window.addEventListener('load', function() {
     
   console.log('Addinf listener to push button...');
@@ -271,8 +280,8 @@ window.addEventListener('load', function() {
         //var thissound=document.getElementById('anuncioMP3');
         //thissound.play();
         
-        var audio = new Audio('anuncioMP3.mp3');
-        audio.play();
+        //var audio = new Audio('anuncioMP3.mp3');
+        //audio.play();
         
     });
 

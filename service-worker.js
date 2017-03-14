@@ -66,6 +66,8 @@ self.addEventListener('push', function(event) {
         //var thissound=document.getElementById('anuncioMP3');
         //thissound.Play();
         
+        setTimeout(reproduceSound,0);
+        
         break;
         
     case "CALL_END":
@@ -202,6 +204,6 @@ self.addEventListener('activate', function (evet) {
 
 self.addEventListener('fetch', function (evt) {
     console.log("[Service Worker] fetching some data");
-    console.log(evt);
+    console.log(evt);   
 });
 //~PROBANDO 14/03/17
