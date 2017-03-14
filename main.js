@@ -265,9 +265,15 @@ window.addEventListener('load', function() {
   
     // Listen to messages from service workers.
     navigator.serviceWorker.addEventListener('message', function(event) {
+        
         console.log("Got reply from service worker: " + event.data);
-        var thissound=document.getElementById('anuncioMP3');
-        thissound.play();
+        
+        //var thissound=document.getElementById('anuncioMP3');
+        //thissound.play();
+        
+        var audio = new Audio('anuncioMP3.mp3');
+        audio.play();
+        
     });
 
     //PROBANDO LUA!!!!

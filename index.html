@@ -49,12 +49,17 @@ limitations under the License.
 
   <body>
   
-    <embed  src="/anuncioMP3.mp3" 
+    <!-- <embed  src="/anuncioMP3.mp3" 
             id="anuncioMP3" 
             autostart="false" 
             width="0" height="0" 
             enablejavascript="true" 
-    />
+    /> -->
+    
+    <audio controls="controls">
+        Your browser does not support the <code>audio</code> element.
+        <source src="anuncioMP3.mp3" type="audio/mp3">
+    </audio>
         
     <h1>Push Messaging &amp; Notifications</h1>
 
