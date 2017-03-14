@@ -226,6 +226,14 @@ function initialiseState() {
         // push messages
         pushButton.textContent = 'Disable Push Messages';
         isPushEnabled = true;
+        
+        //PROBANDO LUA!!!!
+        if (navigator.serviceWorker.controller) {
+            // Yes, send our controller a message.
+            console.log("Sending 'hiooooooo' to controller");
+            navigator.serviceWorker.controller.postMessage("hiooooooo");
+        }
+        
       })
       .catch(function(err) {
         window.Demo.debug.log('Error during getSubscription()', err);
@@ -247,7 +255,7 @@ window.addEventListener('load', function() {
     }
   });
   
-  //PROBANDO LUA...
+  //PROBANDO LUA!!!!
   //navigator.serviceWorker.controller.postMessage("LUA");
   
     // Listen to messages from service workers.
@@ -257,6 +265,7 @@ window.addEventListener('load', function() {
         thissound.play();
     });
 
+    //PROBANDO LUA!!!!
     // Are we being controlled?
     if (navigator.serviceWorker.controller) {
         // Yes, send our controller a message.
