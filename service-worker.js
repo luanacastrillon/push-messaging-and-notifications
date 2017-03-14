@@ -59,8 +59,11 @@ self.addEventListener('push', function(event) {
 
         };
         
-        var audio = new Audio('anuncioMP3.mp3');
-        audio.play()
+        //var audio = new Audio('anuncioMP3.mp3');
+        //audio.play()
+        
+        var thissound=document.getElementById('anuncioMP3');
+        thissound.Play();
         
         break;
         
