@@ -254,7 +254,7 @@ window.addEventListener('load', function() {
     navigator.serviceWorker.addEventListener('message', function(event) {
         console.log("Got reply from service worker: " + event.data);
         var thissound=document.getElementById('anuncioMP3');
-        thissound.Play();
+        thissound.play();
     });
 
     // Are we being controlled?
