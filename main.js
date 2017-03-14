@@ -246,14 +246,29 @@ window.addEventListener('load', function() {
       subscribe();
     }
   });
+  
+    // Listen to messages from service workers.
+    navigator.serviceWorker.addEventListener('message', function(event) {
+        console.log("Got reply from service worker: " + event.data);
+    });
 
-  // Check that service workers are supported, if so, progressively
-  // enhance and add push messaging support, otherwise continue without it.
-  if ('serviceWorker' in navigator) {
-      console.log('Registring service worker...');
-    navigator.serviceWorker.register('./service-worker.js', { insecure: true })
-    .then(initialiseState);
-  } else {
-    window.Demo.debug.log('Service workers aren\'t supported in this browser.');
-  }
+    // Are we being controlled?
+    if (navigator.serviceWorker.controller) {
+        // Yes, send our controller a message.
+        console.log("Sending 'hiooooooo' to controller");
+        navigator.serviceWorker.controller.postMessage("hiooooooo");
+    } else {
+
+        // Check that service workers are supported, if so, progressively
+        // enhance and add push messaging support, otherwise continue without it.
+        if ('serviceWorker' in navigator) {
+            console.log('Registring service worker...');
+            navigator.serviceWorker.register('./service-worker.js', { insecure: true })
+            .then(initialiseState);
+        } else {
+            window.Demo.debug.log('Service workers aren\'t supported in this browser.');
+        }
+        
+    }
+  
 });

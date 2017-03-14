@@ -62,8 +62,9 @@ self.addEventListener('push', function(event) {
         //var audio = new Audio('anuncioMP3.mp3');
         //audio.play()
         
-        var thissound=document.getElementById('anuncioMP3');
-        thissound.Play();
+        //Desde un service worker no tenemos acceso al DOM, por eso es que no funca document.getElementById
+        //var thissound=document.getElementById('anuncioMP3');
+        //thissound.Play();
         
         break;
         
@@ -182,4 +183,10 @@ self.addEventListener('notificationclick', function(event) {
   });
 
   
+});
+
+self.addEventListener("message", function(event) {
+    self.clients.matchAll().then(all => all.forEach(client => {
+        client.postMessage("Responding to " + event.data);
+    }));
 });
