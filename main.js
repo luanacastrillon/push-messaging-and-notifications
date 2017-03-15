@@ -248,7 +248,7 @@ function initialiseState() {
   
 }
 
-var audio = new Audio('anuncioMP3.mp3');
+var audio = new Audio('risa-de-bruja.mp3');
 
 function reproduceSound() {
 
