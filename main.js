@@ -234,8 +234,8 @@ function initialiseState() {
         //  VER ESTO, QUE POR AHI ME SIRVA PARA ENVIAR EL CLIENT ID (SI ES QUE PUEDO SACARLO DE LA SUBSCRITION)
         if (navigator.serviceWorker.controller) {
             // Yes, send our controller a message.
-            console.log("Sending 'init' to controller");
-            navigator.serviceWorker.controller.postMessage("init");
+            console.log("Sending 'hiooooooo' to controller");
+            navigator.serviceWorker.controller.postMessage("hiooooooo");
         }
         
       })
@@ -248,13 +248,15 @@ function initialiseState() {
   
 }
 
-var audio = new Audio('risa-de-bruja.mp3');
+var audio = new Audio('anuncioMP3.mp3');
 
 function reproduceSound() {
 
     console.log("REPRODUCING SOUND!!!!!");
     
     //var audio = new Audio('anuncioMP3.mp3');
+    
+    audio = new Audio('anuncioMP3.mp3');
     audio.play();
     
 }
