@@ -231,11 +231,12 @@ function initialiseState() {
         isPushEnabled = true;
         
         //PROBANDO LUA!!!!
-        if (navigator.serviceWorker.controller) {
+        //  VER ESTO, QUE POR AHI ME SIRVA PARA ENVIAR EL CLIENT ID (SI ES QUE PUEDO SACARLO DE LA SUBSCRITION)
+        /*if (navigator.serviceWorker.controller) {
             // Yes, send our controller a message.
             console.log("Sending 'hiooooooo' to controller");
             navigator.serviceWorker.controller.postMessage("hiooooooo");
-        }
+        }*/
         
       })
       .catch(function(err) {
@@ -247,12 +248,23 @@ function initialiseState() {
   
 }
 
+var audio = new Audio('anuncioMP3.mp3');
+
 function reproduceSound() {
 
     console.log("REPRODUCING SOUND!!!!!");
     
-    var audio = new Audio('anuncioMP3.mp3');
+    //var audio = new Audio('anuncioMP3.mp3');
     audio.play();
+    
+}
+
+function stopSound() {
+
+    console.log("STOPPING SOUND!!!!!");
+    
+    //var audio = new Audio('anuncioMP3.mp3');
+    audio.stop();
     
 }
 
@@ -290,7 +302,7 @@ window.addEventListener('load', function() {
     });
 
     // Listen to messages from service workers.
-    navigator.serviceWorker.addEventListener('push', function(event) {
+    /*navigator.serviceWorker.addEventListener('push', function(event) {
         
         console.log("LISTENER PUSH --> Got reply from service worker: " + event.data);
         
@@ -298,7 +310,7 @@ window.addEventListener('load', function() {
         
         console.log("LISTENER PUSH --> fin ");
         
-    });
+    });*/
     
     //PROBANDO LUA!!!!
     // Are we being controlled?
