@@ -210,18 +210,20 @@ self.addEventListener("message", function(event) {
     }));
 });
 
-self.addEventListener('install', function (evt) {
+self.addEventListener('install', function (event) {
     console.log("[Service Worker] the worker was installed properly!");
-    console.log(evt);
+    console.log(event);
+    event.waitUntil(self.skipWaiting());
 });
 
-self.addEventListener('activate', function (evt) {
+self.addEventListener('activate', function (event) {
     console.log("[Service Worker] it has actived properly");
-    console.log(evt);
+    console.log(event);
+    event.waitUntil(self.clients.claim());
 });
 
-self.addEventListener('fetch', function (evt) {
+self.addEventListener('fetch', function (event) {
     console.log("[Service Worker] fetching some data");
-    console.log(evt);   
+    console.log(event);   
 });
 //~PROBANDO 14/03/17
