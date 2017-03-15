@@ -277,6 +277,8 @@ window.addEventListener('load', function() {
         
         console.log("LISTENER MESSAGE --> Got reply from service worker: " + event.data);
         
+        reproduceSound();
+        
         //var thissound=document.getElementById('anuncioMP3');
         //thissound.play();
         
@@ -286,13 +288,13 @@ window.addEventListener('load', function() {
     });
 
     // Listen to messages from service workers.
-    navigator.serviceWorker.addEventListener('push', function(event) {
+    /*navigator.serviceWorker.addEventListener('push', function(event) {
         
         console.log("LISTENER PUSH --> Got reply from service worker: " + event.data);
         
         reproduceSound();
         
-    });
+    });*/
     
     //PROBANDO LUA!!!!
     // Are we being controlled?
