@@ -71,7 +71,8 @@ self.addEventListener('push', function(event) {
         console.log(event);
         
         self.clients.matchAll().then(all => all.forEach(client => {
-            client.postMessage("Reproducir audio " + event.data);
+            //client.postMessage("Reproducir audio " + event.data);
+            client.postMessage("START_AUDIO");
         }));
         
         break;
@@ -179,6 +180,15 @@ self.addEventListener('notificationclick', function(event) {
   
   console.log('DATA FROM NOTIF: is_missed_call= ' + call_data.is_missed_call);
   console.log('DATA FROM NOTIF: from= ' + call_data.from);
+  
+  if(!call_data.is_missed_call) {
+      
+      self.clients.matchAll().then(all => all.forEach(client => {
+            //client.postMessage("Reproducir audio " + event.data);
+            client.postMessage("STOP_AUDIO");
+      }));
+      
+  }
 
   event.waitUntil(
     clients.openWindow('http://www.condortech.com.ar')

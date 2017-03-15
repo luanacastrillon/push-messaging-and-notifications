@@ -264,7 +264,10 @@ function stopSound() {
     console.log("STOPPING SOUND!!!!!");
     
     //var audio = new Audio('anuncioMP3.mp3');
-    audio.stop();
+    //audio.stop();
+    
+    audio.pause();
+    audio.currentTime = 0;
     
 }
 
