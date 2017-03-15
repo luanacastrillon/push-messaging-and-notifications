@@ -292,7 +292,17 @@ window.addEventListener('load', function() {
         
         console.log("LISTENER MESSAGE --> Got reply from service worker: " + event.data);
         
-        reproduceSound();
+        switch (event.data) {
+            case "START_AUDIO":
+                reproduceSound();
+                break;
+        
+            case "STOP_AUDIO":
+                stopSound();
+                break;
+            default:
+                console.log("LISTENER MESSAGE --> VINO OTRA OPCION!!");
+        }
         
          console.log("LISTENER MESSAGE --> fin ");
         
