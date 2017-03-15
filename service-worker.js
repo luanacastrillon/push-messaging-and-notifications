@@ -188,10 +188,11 @@ self.addEventListener('notificationclick', function(event) {
         self.clients.matchAll().then(all => all.forEach(client => {
             //client.postMessage("STOP_AUDIO" + event.data);
             client.postMessage("STOP_AUDIO");
-        }));
+        }))
+    );
       
     //}
-  );
+  //);
   
   console.log('HICIERON CLICK!!! ---> DEBO DEJAR DE ENVIAR LAS NOTIFICACIONES');
   
