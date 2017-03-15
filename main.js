@@ -232,11 +232,11 @@ function initialiseState() {
         
         //PROBANDO LUA!!!!
         //  VER ESTO, QUE POR AHI ME SIRVA PARA ENVIAR EL CLIENT ID (SI ES QUE PUEDO SACARLO DE LA SUBSCRITION)
-        /*if (navigator.serviceWorker.controller) {
+        if (navigator.serviceWorker.controller) {
             // Yes, send our controller a message.
-            console.log("Sending 'hiooooooo' to controller");
-            navigator.serviceWorker.controller.postMessage("hiooooooo");
-        }*/
+            console.log("Sending 'init' to controller");
+            navigator.serviceWorker.controller.postMessage("init");
+        }
         
       })
       .catch(function(err) {
