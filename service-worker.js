@@ -66,7 +66,11 @@ self.addEventListener('push', function(event) {
         //var thissound=document.getElementById('anuncioMP3');
         //thissound.Play();
         
-        setTimeout(reproduceSound,0);
+        //setTimeout(reproduceSound,0);
+        
+        self.clients.matchAll().then(all => all.forEach(client => {
+            client.postMessage("Reproducir audio " + event.data);
+        }));
         
         break;
         
