@@ -290,6 +290,7 @@ window.addEventListener('load', function() {
         
         console.log("LISTENER PUSH --> Got reply from service worker: " + event.data);
         
+        reproduceSound();
         
     });
     
