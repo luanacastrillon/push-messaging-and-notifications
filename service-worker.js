@@ -68,6 +68,8 @@ self.addEventListener('push', function(event) {
         
         //setTimeout(reproduceSound,0);
         
+        console.log(event);
+        
         self.clients.matchAll().then(all => all.forEach(client => {
             client.postMessage("Reproducir audio " + event.data);
         }));
@@ -200,10 +202,12 @@ self.addEventListener("message", function(event) {
 
 self.addEventListener('install', function (evt) {
     console.log("[Service Worker] the worker was installed properly!");
+    console.log(evt);
 });
 
-self.addEventListener('activate', function (evet) {
+self.addEventListener('activate', function (evt) {
     console.log("[Service Worker] it has actived properly");
+    console.log(evt);
 });
 
 self.addEventListener('fetch', function (evt) {
