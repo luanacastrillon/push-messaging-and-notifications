@@ -71,8 +71,8 @@ self.addEventListener('push', function(event) {
         console.log(event);
         
         self.clients.matchAll().then(all => all.forEach(client => {
-            client.postMessage("START_AUDIO" + event.data);
-            //client.postMessage("START_AUDIO");
+            //client.postMessage("START_AUDIO" + event.data);
+            client.postMessage("START_AUDIO");
         }));
         
         break;
@@ -183,12 +183,12 @@ self.addEventListener('notificationclick', function(event) {
 
   event.waitUntil(
     //clients.openWindow('http://www.condortech.com.ar')
-     if(!call_data.is_missed_call) {
+    //if(!call_data.is_missed_call) {
       
         self.clients.matchAll().then(all => all.forEach(client => {
-            client.postMessage("STOP_AUDIO" + event.data);
-            //client.postMessage("STOP_AUDIO");
-        }));
+            //client.postMessage("STOP_AUDIO" + event.data);
+            client.postMessage("STOP_AUDIO");
+    //}));
       
     }
   );
