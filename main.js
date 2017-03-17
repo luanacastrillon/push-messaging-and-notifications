@@ -278,7 +278,6 @@ window.addEventListener('load', function() {
   console.log("[Main.js] - Starting load listener...");
   
   console.log('[Main.js] - (Listener: load) Addinf listener to push button...');
-  
   var pushButton = document.querySelector('.js-push-button');
   pushButton.addEventListener('click', function() {
     if (isPushEnabled) {
@@ -309,14 +308,13 @@ window.addEventListener('load', function() {
         
   });
 
-    // Check that service workers are supported, if so, progressively
-    // enhance and add push messaging support, otherwise continue without it.
+    //Se chequea si el navegador soporta service workers, si lo soporta, se procede a su registracion...
     if ('serviceWorker' in navigator) {
         console.log('[Main.js] - (Listener: load) Registring service worker...');
         navigator.serviceWorker.register('./service-worker.js')
         .then(initialiseState);
     } else {
-        window.Demo.debug.log('[Main.js] - (Listener: load) Service workers aren\'t supported in this browser.');
+        console.log('[Main.js] - (Listener: load) Service workers aren\'t supported in this browser.');
     }
   
 });
