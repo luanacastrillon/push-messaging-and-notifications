@@ -11,7 +11,7 @@ var isPushEnabled = false;
 // to the subscription endpoint
 function endpointWorkaround(pushSubscription) {
     
-    console.log('Starting endpointWorkaround() method...');
+    console.log('[Main.js] -  Starting endpointWorkaround() method...');
   // Make sure we only mess with GCM
   if (pushSubscription.endpoint.indexOf('https://android.googleapis.com/gcm/send') !== 0) {
     return pushSubscription.endpoint;
@@ -27,29 +27,30 @@ function endpointWorkaround(pushSubscription) {
       pushSubscription.subscriptionId;
   }
   
-  console.log('Finishing endpointWorkaround() method...');
+  console.log('[Main.js] - Finishing endpointWorkaround() method...');
   return mergedEndpoint;
 }
 
 function sendSubscriptionToServer(subscription) {
     
-    console.log('Starting sendSubscriptionToServer() method...');
+  console.log('[Main.js] - Starting sendSubscriptionToServer() method...');
+  
   // TODO: Send the subscription.endpoint
   // to your server and save it to send a
   // push message at a later date
   //
   // For compatibly of Chrome 43, get the endpoint via
   // endpointWorkaround(subscription)
-  console.log('TODO: Implement sendSubscriptionToServer()');
+  console.log('[Main.js] - (Method: sendSubscriptionToServer()) TODO: Implement sendSubscriptionToServer()');
   
   const subscriptionJson = document.querySelector('.js-subscription-json');
   
    if (subscription) {
     subscriptionJson.textContent = JSON.stringify(subscription);
     
-    console.log('OBJETO SUSBRIPCION' + subscription);
+    console.log('[Main.js] - (Method: sendSubscriptionToServer()) OBJETO SUSBRIPCION' + subscription);
     
-    console.log('PROBANDO DATOS DE LA SUSCRIPCION' + subscriptionJson.textContent);
+    console.log('[Main.js] - (Method: sendSubscriptionToServer()) PROBANDO DATOS DE LA SUSCRIPCION' + subscriptionJson.textContent);
     
   }
 
@@ -59,7 +60,7 @@ function sendSubscriptionToServer(subscription) {
   // generating the appropriate cURL command
   showCurlCommand(mergedEndpoint);
   
-  console.log('Finishing sendSubscriptionToServer() method...');
+  console.log('[Main.js] - Finishing sendSubscriptionToServer() method...');
 }
 
 // NOTE: This code is only suitable for GCM endpoints,
@@ -67,7 +68,8 @@ function sendSubscriptionToServer(subscription) {
 // this to send a PUSH request directly to the endpoint
 function showCurlCommand(mergedEndpoint) {
     
-    console.log('Starting showCurlCommand() method...');
+    console.log('[Main.js] - Starting showCurlCommand() method...');
+    
   // The curl command to trigger a push message straight from GCM
   if (mergedEndpoint.indexOf(GCM_ENDPOINT) !== 0) {
     window.Demo.debug.log('This browser isn\'t currently ' +
@@ -84,12 +86,12 @@ function showCurlCommand(mergedEndpoint) {
 
   curlCommandDiv.textContent = curlCommand;
   
-  console.log('Finishing showCurlCommand() method...');
+  console.log('[Main.js] - Finishing showCurlCommand() method...');
 }
 
 function unsubscribe() {
     
-    console.log('Starting unsubscribe() method...');
+  console.log('[Main.js] - Starting unsubscribe() method...');
   var pushButton = document.querySelector('.js-push-button');
   pushButton.disabled = true;
   curlCommandDiv.textContent = '';
@@ -124,21 +126,22 @@ function unsubscribe() {
           // the subscription id from your data store and
           // inform the user that you disabled push
 
-          window.Demo.debug.log('Unsubscription error: ', e);
+          window.Demo.debug.log('[Main.js] - (Method: unsubscribe()) Unsubscription error: ', e);
           pushButton.disabled = false;
         });
       }).catch(function(e) {
-        window.Demo.debug.log('Error thrown while unsubscribing from ' +
+        window.Demo.debug.log('[Main.js] - (Method: unsubscribe()) Error thrown while unsubscribing from ' +
           'push messaging.', e);
       });
   });
   
-  console.log('Finishing unsubscribe() method...');
+  console.log('[Main.js] - Finishing unsubscribe() method...');
 }
 
 function subscribe() {
     
-    console.log('Starting subscribe() method...');
+  console.log('[Main.js] - Starting subscribe() method...');
+  
   // Disable the button so it can't be changed while
   // we process the permission request
   var pushButton = document.querySelector('.js-push-button');
@@ -163,29 +166,29 @@ function subscribe() {
           // means we failed to subscribe and the user will need
           // to manually change the notification permission to
           // subscribe to push messages
-          window.Demo.debug.log('Permission for Notifications was denied');
+          window.Demo.debug.log('[Main.js] - (Method: subscribe()) Permission for Notifications was denied');
           pushButton.disabled = true;
         } else {
           // A problem occurred with the subscription, this can
           // often be down to an issue or lack of the gcm_sender_id
           // and / or gcm_user_visible_only
-          window.Demo.debug.log('Unable to subscribe to push.', e);
+          window.Demo.debug.log('[Main.js] - (Method: subscribe()) Unable to subscribe to push.', e);
           pushButton.disabled = false;
           pushButton.textContent = 'Enable Push Messages';
         }
       });
   });
   
-  console.log('Finishing subscribe() method...');
+  console.log('[Main.js] - Finishing subscribe() method...');
 }
 
 // Once the service worker is registered set the initial state
 function initialiseState() {
     
-    console.log('Starting initialiseState() method...');
+    console.log('[Main.js] - Starting initialiseState() method...');
   // Are Notifications supported in the service worker?
   if (!('showNotification' in ServiceWorkerRegistration.prototype)) {
-    window.Demo.debug.log('Notifications aren\'t supported.');
+    window.Demo.debug.log('[Main.js] - (Method: initialiseState()) Notifications aren\'t supported.');
     return;
   }
 
@@ -193,13 +196,13 @@ function initialiseState() {
   // If its denied, it's a permanent block until the
   // user changes the permission
   if (Notification.permission === 'denied') {
-    window.Demo.debug.log('The user has blocked notifications.');
+    window.Demo.debug.log('[Main.js] - (Method: initialiseState()) The user has blocked notifications.');
     return;
   }
 
   // Check if push messaging is supported
   if (!('PushManager' in window)) {
-    window.Demo.debug.log('Push messaging isn\'t supported.');
+    window.Demo.debug.log('[Main.js] - (Method: initialiseState()) Push messaging isn\'t supported.');
     return;
   }
 
@@ -209,7 +212,7 @@ function initialiseState() {
     serviceWorkerRegistration.pushManager.getSubscription()
       .then(function(subscription) {
           
-        console.log(`Service worker registered with scope ${serviceWorkerRegistration.scope}`);
+        console.log(`[Main.js] - (Method: initialiseState()) Service worker registered with scope ${serviceWorkerRegistration.scope}`);
           
         // Enable any UI which subscribes / unsubscribes from
         // push messages.
@@ -234,17 +237,17 @@ function initialiseState() {
         //  VER ESTO, QUE POR AHI ME SIRVA PARA ENVIAR EL CLIENT ID (SI ES QUE PUEDO SACARLO DE LA SUBSCRITION)
         if (navigator.serviceWorker.controller) {
             // Yes, send our controller a message.
-            console.log("Sending 'hiooooooo' to controller");
+            console.log("[Main.js] - (Method: initialiseState()) Sending 'hiooooooo' to controller");
             navigator.serviceWorker.controller.postMessage("hiooooooo");
         }
         
       })
       .catch(function(err) {
-        window.Demo.debug.log('Error during getSubscription()', err);
+        window.Demo.debug.log('[Main.js] - (Method: initialiseState()) Error during getSubscription()', err);
       });
   });
   
-  console.log('Finishing initialiseState() method...');
+  console.log('[Main.js] - Finishing initialiseState() method...');
   
 }
 
@@ -252,30 +255,29 @@ var audio = new Audio('risa-de-bruja.mp3');
 
 function reproduceSound() {
 
-    console.log("REPRODUCING SOUND!!!!!");
-    
-    //var audio = new Audio('anuncioMP3.mp3');
+    console.log("[Main.js] - Starting reproduceSound() method...");
     
     audio = new Audio('risa-de-bruja.mp3');
     audio.play();
     
+    console.log("[Main.js] - Finishing reproduceSound() method...");
 }
 
 function stopSound() {
 
-    console.log("STOPPING SOUND!!!!!");
-    
-    //var audio = new Audio('anuncioMP3.mp3');
-    //audio.stop();
+    console.log("[Main.js] - Starting stopSound() method...");
     
     audio.pause();
     audio.currentTime = 0;
     
+    console.log("[Main.js] - Finishing stopSound() method...");
 }
 
 window.addEventListener('load', function() {
     
-  console.log('Addinf listener to push button...');
+  console.log("[Main.js] - Starting load listener...");
+  
+  console.log('[Main.js] - (Listener: load) Addinf listener to push button...');
   
   var pushButton = document.querySelector('.js-push-button');
   pushButton.addEventListener('click', function() {
@@ -286,15 +288,10 @@ window.addEventListener('load', function() {
     }
   });
   
-  //PROBANDO LUA!!!!
-  //navigator.serviceWorker.controller.postMessage("LUA");
-  
-    // Listen to messages from service workers.
-    navigator.serviceWorker.addEventListener('message', function(event) {
+  // Listen to messages from service workers.
+  navigator.serviceWorker.addEventListener('message', function(event) {
         
-        console.log("LISTENER MESSAGE --> Got reply from service worker: " + event.data);
-        
-        //reproduceSound();
+        console.log("[Main.js] - (Listener: load) LISTENER MESSAGE --> Got reply from service worker: " + event.data);
         
         switch (event.data) {
             case "START_AUDIO":
@@ -305,48 +302,21 @@ window.addEventListener('load', function() {
                 stopSound();
                 break;
             default:
-                console.log("LISTENER MESSAGE --> VINO OTRA OPCION!!");
+                console.log("[Main.js] - (Listener: load) LISTENER MESSAGE --> VINO OTRA OPCION!!");
         }
         
-         console.log("LISTENER MESSAGE --> fin ");
+         console.log("[Main.js] - (Listener: load) LISTENER MESSAGE --> fin ");
         
-        //var thissound=document.getElementById('anuncioMP3');
-        //thissound.play();
-        
-        //var audio = new Audio('anuncioMP3.mp3');
-        //audio.play();
-        
-    });
+  });
 
-    // Listen to messages from service workers.
-    /*navigator.serviceWorker.addEventListener('push', function(event) {
-        
-        console.log("LISTENER PUSH --> Got reply from service worker: " + event.data);
-        
-        reproduceSound();
-        
-        console.log("LISTENER PUSH --> fin ");
-        
-    });*/
-    
-    //PROBANDO LUA!!!!
-    // Are we being controlled?
-    /*if (navigator.serviceWorker.controller) {
-        // Yes, send our controller a message.
-        console.log("Sending 'hiooooooo' to controller");
-        navigator.serviceWorker.controller.postMessage("hiooooooo");
-    } else {*/
-
-        // Check that service workers are supported, if so, progressively
-        // enhance and add push messaging support, otherwise continue without it.
-        if ('serviceWorker' in navigator) {
-            console.log('Registring service worker...');
-            navigator.serviceWorker.register('./service-worker.js', { insecure: true })
-            .then(initialiseState);
-        } else {
-            window.Demo.debug.log('Service workers aren\'t supported in this browser.');
-        }
-        
-    //}
+    // Check that service workers are supported, if so, progressively
+    // enhance and add push messaging support, otherwise continue without it.
+    if ('serviceWorker' in navigator) {
+        console.log('[Main.js] - (Listener: load) Registring service worker...');
+        navigator.serviceWorker.register('./service-worker.js', { insecure: true })
+        .then(initialiseState);
+    } else {
+        window.Demo.debug.log('[Main.js] - (Listener: load) Service workers aren\'t supported in this browser.');
+    }
   
 });

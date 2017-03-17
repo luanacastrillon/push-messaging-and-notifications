@@ -22,13 +22,13 @@
 'use strict';
 
 self.addEventListener('push', function(event) {
-  console.log('[Service Worker] Push Received.');
-  console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
+  console.log('[Condor Service Worker] - (Listener: push) Push Received.');
+  console.log(`[Condor Service Worker] - (Listener: push) Push had this data: "${event.data.text()}"`);
   
   var eventData = JSON.parse(event.data.text());
   
-  console.log('EVENT DATA --> title=' + eventData.title);
-  console.log('EVENT DATA --> message=' + eventData.message);
+  console.log('[Condor Service Worker] - (Listener: push) EVENT DATA --> title=' + eventData.title);
+  console.log('[Condor Service Worker] - (Listener: push) EVENT DATA --> message=' + eventData.message);
   
   var notificationTitle;
   var data;
@@ -53,20 +53,11 @@ self.addEventListener('push', function(event) {
             body: '2364643610',
             icon: 'images/condor_calling.png',
             badge: 'images/condor_logo_2.png',
-            vibrate: [10000, 100, 20000, 100, 30000, 100, 40000], // Vibra 100300 ms en total...Vibra, pausa, vibra, pausa, vibra, pausa, vibra
+            vibrate: [10000, 100, 10000, 100, 10000, 100, 10000], // Vibra 40300ms en total...Vibra, pausa, vibra, pausa, vibra, pausa, vibra
             tag: tag,
             data:data
 
         };
-        
-        //var audio = new Audio('anuncioMP3.mp3');
-        //audio.play()
-        
-        //Desde un service worker no tenemos acceso al DOM, por eso es que no funca document.getElementById
-        //var thissound=document.getElementById('anuncioMP3');
-        //thissound.Play();
-        
-        //setTimeout(reproduceSound,0);
         
         console.log(event);
         
@@ -100,86 +91,24 @@ self.addEventListener('push', function(event) {
     
         break;
     default:
-        console.log("VINO OTRA OPCION!!");
+        console.log("[Condor Service Worker] - (Listener: push) VINO OTRA OPCION!!");
     }
     
     const notificationPromise = self.registration.showNotification(notificationTitle, options);
     event.waitUntil(notificationPromise);
 
-/*
-  const title = 'Llamando...';
-  
-  var data = {
-        call_data: {
-            from: '2364643610',
-            is_missed_call: false
-        }
-  };
-  
-  var ramdom_call_id = Math.random();
-  var tag = 'call' + ramdom_call_id;
-  
-  const options = {
-    body: '2364643610',
-    icon: 'images/condor_calling.png',
-    badge: 'images/condor_logo_2.png',
-    vibrate: [10000, 100, 20000, 100, 30000, 100, 40000], // Vibra 100300 ms en total...Vibra, pausa, vibra, pausa, vibra, pausa, vibra
-    tag: tag,
-    data:data
-
-  };
-  
-  const notificationPromise = self.registration.showNotification(title, options);
-    event.waitUntil(notificationPromise);
-  
-  setTimeout(replaceNotificationMissedCall,80000,tag);
-*/
-
-  //setTimeout(replaceNotificationMissedCall,60000);
-  
- // fetch('https://www.gruveo.com/api/ring?' + (start ? 'start' : 'stop'), { method: 'HEAD' }).catch(function () {});
-
 });
 
-/*function replaceNotificationMissedCall(tag) {
-
-    console.log('replaceNotificationMissedCall');
-    
-    console.log('TAG =' + tag);
-
-    const title = 'Llamada perdida';
-    
-    var data = {
-        call_data: {
-            from: '2364643610',
-            is_missed_call: true
-        }
-  };
-    
-    const options = {
-        body: '2364643610',
-        icon: 'images/condor_calling.png',
-        badge: 'images/condor_logo_2.png',
-        tag: tag,
-        data: data
-    };
-  
-    //const notificationPromise = self.registration.showNotification(title, options);
-    //event.waitUntil(notificationPromise);
-    
-    self.registration.showNotification(title, options);    
-}*/
-
-
 self.addEventListener('notificationclick', function(event) {
-  console.log('[Service Worker] Notification click Received.');
+  
+  console.log('[Condor Service Worker] - (Listener: notificationclick)  Notification click Received.');
 
   event.notification.close();
   
   var call_data = event.notification.data.call_data;
   
-  console.log('DATA FROM NOTIF: is_missed_call= ' + call_data.is_missed_call);
-  console.log('DATA FROM NOTIF: from= ' + call_data.from);
+  console.log('[Condor Service Worker] - (Listener: notificationclick) DATA FROM NOTIF: is_missed_call= ' + call_data.is_missed_call);
+  console.log('[Condor Service Worker] - (Listener: notificationclick) DATA FROM NOTIF: from= ' + call_data.from);
 
   event.waitUntil(
     //clients.openWindow('http://www.condortech.com.ar')
@@ -194,36 +123,34 @@ self.addEventListener('notificationclick', function(event) {
     //}
   //);
   
-  console.log('HICIERON CLICK!!! ---> DEBO DEJAR DE ENVIAR LAS NOTIFICACIONES');
+  console.log('[Condor Service Worker] - (Listener: notificationclick) HICIERON CLICK!!! ---> SE DEBE ESTABLECER LA LLAMADA O BIEN, DEJAR DEJAR DE ESCUCHAR EL AUDIO DE LA NOTIFICACION');
   
   registration.pushManager.getSubscription().then(function(subscription) {
-    console.log("GOT SUBSCRIPTION ID: ", subscription.endpoint)
+    console.log("[Condor Service Worker] (Listener: notificationclick) Obtaining subscription endpoint: ", subscription.endpoint)
   });
 
   
 });
 
-//PROBANDO 14/03/17
 self.addEventListener("message", function(event) {
     self.clients.matchAll().then(all => all.forEach(client => {
-        client.postMessage("Responding to " + event.data);
+        client.postMessage("[Condor Service Worker] - (Listener: message) Responding to " + event.data);
     }));
 });
 
 self.addEventListener('install', function (event) {
-    console.log("[Service Worker] the worker was installed properly!");
+    console.log("[Condor Service Worker] - (Listener: install) the worker was installed properly!");
     console.log(event);
     event.waitUntil(self.skipWaiting());
 });
 
 self.addEventListener('activate', function (event) {
-    console.log("[Service Worker] it has actived properly");
+    console.log("[Condor Service Worker] - (Listener: activate) it has actived properly");
     console.log(event);
     event.waitUntil(self.clients.claim());
 });
 
 self.addEventListener('fetch', function (event) {
-    console.log("[Service Worker] fetching some data");
+    console.log("[Condor Service Worker] - (Listener: fetch) fetching some data");
     console.log(event);   
 });
-//~PROBANDO 14/03/17
